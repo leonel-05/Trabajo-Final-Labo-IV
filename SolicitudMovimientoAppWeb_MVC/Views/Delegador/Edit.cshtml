@@ -1,0 +1,52 @@
+﻿@model SolicitudMovimientoAppWeb_MVC.Models.Movimiento
+
+<h2>Asignar Chofer</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label>Descripción</label>
+        <input type="text" class="form-control" asp-for="Descripcion" readonly />
+    </div>
+    <div class="form-group">
+        <label>Código Material</label>
+        <input type="text" class="form-control" asp-for="CodigoMaterial" />
+        <span asp-validation-for="CodigoMaterial" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Lugar de Salida</label>
+        <input type="text" class="form-control" value="@Model.LugarSalida.Nombre, @Model.LugarSalida.Direcion" readonly />
+    </div>
+    <div class="form-group">
+        <label>Lugar Destino</label>
+        <input type="text" class="form-control" value="@Model.LugarDestino.Nombre, @Model.LugarDestino.Direcion" readonly />
+    </div>
+    <div class="form-group">
+        <label>Asignar Chofer</label>
+        <select class="form-control" asp-for="ChoferId" asp-items="ViewBag.Choferes">
+            <option value="">Seleccione un chofer</option>
+        </select>
+        <span asp-validation-for="ChoferId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Estado</label>
+        <select class="form-control" asp-for="EstadoId" asp-items="ViewBag.Estados">
+            <option value="">Seleccione un estado</option>
+        </select>
+        <span asp-validation-for="EstadoId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+    </div>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+

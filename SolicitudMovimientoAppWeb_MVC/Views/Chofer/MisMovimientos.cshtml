@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SolicitudMovimientoAppWeb_MVC.Models.Movimiento>
+
+<h2>Mis Movimientos Asignados</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Descripción</th>
+            <th>Fecha de Entrega</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movimiento in Model)
+
+        {
+            <tr>
+                <td>@movimiento.Descripcion</td>
+                <td>@movimiento.FechaEntrega?.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-action="ActualizarEstado" asp-route-id="@movimiento.Id" class="btn btn-primary">Detalle/Actualizar Estado</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

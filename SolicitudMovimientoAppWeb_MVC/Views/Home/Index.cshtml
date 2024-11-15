@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SolicitudMovimientoAppWeb_MVC.Models.Movimiento>
+
+<h2>Todas las Solicitudes de Movimiento</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Identificador</th>
+            <th>Lugar Salida</th>
+            <th>Lugar Destino</th>
+            <th>Descripción</th>
+            <th>Fecha de Solicitud</th>
+            <th>Fecha de Entrega</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movimiento in Model)
+        {
+            <tr>
+                <td>@movimiento.Id</td>
+                <td>@(movimiento.LugarSalida?.Nombre ?? "No asignado")</td>
+                <td>@(movimiento.LugarDestino?.Nombre ?? "No asignado")</td>
+                <td>@movimiento.Descripcion</td>
+                <td>@movimiento.FechaSolicitud.ToString("dd/MM/yyyy")</td>
+                <td>@movimiento.FechaEntrega?.ToString("dd/MM/yyyy")</td>
+                <td>@movimiento.Estado?.Descripcion</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    <p>Paginas</p>
+
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <a href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })" class="btn btn-secondary">
+            &laquo; Anterior
+        </a>
+    }
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <a href="@Url.Action("Index", new { page = i })" class="btn @(i == ViewBag.CurrentPage ? "btn-primary" : "btn-secondary")">
+            @i
+        </a>
+    }
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <a href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })" class="btn btn-secondary">
+            Siguiente &raquo;
+        </a>
+    }
+</div>
+

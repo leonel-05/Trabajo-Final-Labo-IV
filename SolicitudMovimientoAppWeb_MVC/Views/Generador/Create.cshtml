@@ -1,0 +1,49 @@
+﻿@model SolicitudMovimientoAppWeb_MVC.Models.Movimiento
+
+<h2>Crear Movimiento</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Cantidad" class="control-label"></label>
+        <input asp-for="Cantidad" class="form-control" />
+        <span asp-validation-for="Cantidad" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CodigoMaterial" class="control-label"></label>
+        <input asp-for="CodigoMaterial" class="form-control" />
+        <span asp-validation-for="CodigoMaterial" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Descripcion" class="control-label"></label>
+        <input asp-for="Descripcion" class="form-control" required />
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FechaEntrega" class="control-label"></label>
+        <input asp-for="FechaEntrega" class="form-control" required />
+        <span asp-validation-for="FechaEntrega" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TipoDeEmbalajeId" class="control-label"></label>
+        <select asp-for="TipoDeEmbalajeId" class="form-control" asp-items="@(new SelectList(ViewBag.TipoDeEmbalaje, "Id", "Descripcion"))">
+            <option value="">Selecciona un Tipo</option>
+        </select>
+        <span asp-validation-for="TipoDeEmbalajeId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Lugar de Salida</label>
+        <select asp-for="LugarSalidaId" class="form-control" asp-items="@(new SelectList(ViewBag.Lugares, "Id", "Nombre"))">
+            <option value="">Seleccione un lugar de salida</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Lugar de Destino</label>
+        <select asp-for="LugarDestinoId" class="form-control" asp-items="@(new SelectList(ViewBag.Lugares, "Id", "Nombre"))">
+            <option value="">Seleccione un lugar de destino</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+        <a href="@Url.Action("Upload","Generador")" class="btn btn-secondary">Importar desde Excel</a>
+    </div>
+</form>

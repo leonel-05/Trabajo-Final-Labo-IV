@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SolicitudMovimientoAppWeb_MVC.Models.UserRoleViewModel>
+@{
+    ViewData["Title"] = "Listar Usuarios";
+}
+
+<h2>Lista de Usuarios</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol Actual</th>
+            <th>Nuevo Rol</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.CurrentRole</td>
+                <td>
+                    <form asp-action="EditUserRole" method="post">
+                        <input type="hidden" name="userId" value="@user.UserId" />
+                        <select name="newRole" class="form-select">
+                            @foreach (var role in (List<string>)ViewBag.Roles)
+                            {
+                                if (role == user.CurrentRole)
+                                {
+                                    <option value="@role" selected="selected">@role</option>
+                                }
+                                else
+                                {
+                                    <option value="@role">@role</option>
+                                }
+                            }
+                        </select>
+
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    <p>Paginas</p>
+
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <a href="@Url.Action("ListUsers", new { page = ViewBag.CurrentPage - 1 })" class="btn btn-secondary">
+            &laquo; Anterior
+        </a>
+    }
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <a href="@Url.Action("ListUsers", new { page = i })" class="btn @(i == ViewBag.CurrentPage ? "btn-primary" : "btn-secondary")">
+            @i
+        </a>
+    }
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <a href="@Url.Action("ListUsers", new { page = ViewBag.CurrentPage + 1 })" class="btn btn-secondary">
+            Siguiente &raquo;
+        </a>
+    }
+</div>
+
+

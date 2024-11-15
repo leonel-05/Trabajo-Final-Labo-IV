@@ -1,0 +1,113 @@
+﻿body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	background-color: #f0f2f5;
+	font-family: 'Arial', sans-serif;
+	font-size: 16px;
+	color: #333;
+}
+
+.auth-container {
+	width: 100%;
+	max-width: 400px;
+	padding: 20px;
+}
+
+.auth-card {
+	background-color: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	padding: 50px;
+	text-align: center;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card:hover {
+	transform: scale(1.02);
+	box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.auth-card h2 {
+	margin-bottom: 25px;
+	font-size: 26px;
+	color: #007bff;
+	font-weight: bold;
+}
+
+.auth-card .form-group {
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+.auth-card label {
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 5px;
+	display: block;
+}
+
+.auth-card input[type="text"],
+.auth-card input[type="password"],
+.auth-card input[type="email"] {
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 15px; 
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+	box-sizing: border-box;
+	font-size: 16px;
+	color: #495057;
+	transition: border-color 0.3s ease;
+}
+
+.auth-card input[type="text"]:focus,
+.auth-card input[type="password"]:focus,
+.auth-card input[type="email"]:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+	outline: none;
+}
+
+.auth-card .btn {
+	width: 100%;
+	font-size: 18px;
+	color: #ffffff;
+	background-color: #007bff;
+	border: none;
+	border-radius: 5px;
+	padding: 12px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	margin-top: 10px;
+}
+
+.auth-card .btn:hover {
+	background-color: #0056b3;
+	transform: translateY(-2px);
+}
+
+.auth-card .btn:active {
+	transform: translateY(1px);
+}
+
+.auth-card .link {
+	display: block;
+	margin-top: 20px;
+	font-size: 14px;
+	color: #007bff;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.auth-card .link:hover {
+	color: #0056b3;
+}
+
+.auth-card .error-message {
+	color: #d9534f;
+	font-size: 14px;
+	margin-top: 10px;
+}
